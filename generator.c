@@ -74,7 +74,7 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
                     Direction dir[] = {NORTH, SOUTH, EAST, WEST};
                     shuffle_array(dir); //not sure
                     for(int i = 0; i < 4; i++){
-                        if(get_neighbor(row, col, maze, room, dir[i]) == NULL){
+                        if(get_neighbor(num_rows, num_cols, maze, room, dir[i]) == NULL){
                             room -> connect[dir[i]] = 1;
                         } 
                         else{
