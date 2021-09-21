@@ -19,7 +19,7 @@
    - 0 if room is not in the maze, 1 if room is in the maze
  **/
 int is_in_range(int row, int col, int num_rows, int num_cols) {
-    if(row >= num_rows || col > num_cols || row < 0 || col < 0){
+    if(row >= num_rows || col >= num_cols || row < 0 || col < 0){
         return 0;
     }
     else{

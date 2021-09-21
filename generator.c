@@ -90,7 +90,7 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
                             room -> connect[dir[i]] = nextRoom -> connect[oppDir];
                             }
                             else{
-                            room -> connect[dir[i]] = 1; //not sure 
+                            room -> connect[dir[i]] = 1; 
                             
                         } 
                             }
@@ -119,16 +119,16 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
 int encode_room(struct maze_room room) {
     int sum = 0;
     struct maze_room *roomPnt = &room;
-    if(roomPnt -> connect[NORTH] == !2){
+    if(roomPnt -> connect[NORTH] != -1){
         sum = sum + roomPnt -> connect[NORTH];
     }
-     if(roomPnt -> connect[SOUTH] == !2){
+     if(roomPnt -> connect[SOUTH] != -1){
         sum = sum + 2*(roomPnt -> connect[SOUTH]);
      }
-     if(roomPnt -> connect[WEST] == !2){
+     if(roomPnt -> connect[WEST] != -1){
         sum = sum + 4*(roomPnt -> connect[WEST]);
      }
-        if(roomPnt -> connect[EAST] == !2){
+        if(roomPnt -> connect[EAST] != -1){
         sum = sum + 8*(roomPnt -> connect[EAST]);
         }
         return sum;
