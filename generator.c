@@ -87,8 +87,7 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
                         
                          else{
                             Direction oppDir = get_opposite_dir(dir[i]);
-                            //instead of getN, 78 check connection
-                            if(nextRoom -> connect[dir[i]] != -1){
+                            if(nextRoom -> connect[oppDir] != -1){
                             room -> connect[dir[i]] = nextRoom -> connect[oppDir];
                             }
                             else{
