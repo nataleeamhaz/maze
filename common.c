@@ -19,7 +19,7 @@
    - 0 if room is not in the maze, 1 if room is in the maze
  **/
 int is_in_range(int row, int col, int num_rows, int num_cols) {
-    if(row > num_rows || col > num_cols || row < 0 || col < 0){
+    if(row >= num_rows || col > num_cols || row < 0 || col < 0){
         return 0;
     }
     else{
@@ -45,17 +45,28 @@ int is_in_range(int row, int col, int num_rows, int num_cols) {
 struct maze_room *get_neighbor(int num_rows, int num_cols,
                                struct maze_room maze[num_rows][num_cols],
                                struct maze_room *room, Direction dir) {
-                                   if (dir == SOUTH && is_in_range(room -> row + 1, room -> column, num_rows, num_cols)){
-                                       return &maze[room -> row + 1][room -> column];
-                                   }else if (dir == NORTH && is_in_range(room -> row - 1, room -> column, num_rows, num_cols)){
-                                       return &maze[room -> row - 1][room -> column];
-                                   } else if (dir == EAST && is_in_range(room -> row, room -> column + 1, num_rows, num_cols)){
-                                       return &maze[room -> row][room -> column + 1];
-                                   } else if (dir == WEST && is_in_range(room -> row, room -> column - 2, num_rows, num_cols)){
-                                       return &maze[room -> row][room -> column - 1];
-                                   } else{
-                                       return NULL;
-                                   }
+                                    if(dir == EAST){
+      if(is_in_range(room->row, room->column + 1, num_rows, num_cols)){
+        return &maze[room->row][room->column+1];
+      }
+    }
+    else if(dir == WEST){
+      if(is_in_range(room->row, room->column-1, num_rows, num_cols)){
+        return &maze[room->row][room->column-1];
+      }
+    }
+    else if(dir == NORTH){
+      if(is_in_range(room->row-1, room->column, num_rows, num_cols)){
+       return &maze[room->row-1][room->column];
+      }
+    }
+    else{
+      if(is_in_range(room->row+1, room->column, num_rows, num_cols)){
+          return &maze[room->row+1][room->column];
+      }
+    }
+    return NULL;
+}
     // TODO: implement function
 }
 
