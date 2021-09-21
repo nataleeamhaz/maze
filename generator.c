@@ -69,7 +69,7 @@ void shuffle_array(Direction directions[]) {
 void drunken_walk(int row, int col, int num_rows, int num_cols,
                   struct maze_room maze[num_rows][num_cols]) {
                     struct maze_room *room;
-                    room = &maze[num_rows][num_cols];
+                    room = &maze[row][col];
                     room -> visited = true;
                     Direction dir[] = {NORTH, SOUTH, EAST, WEST};
                     shuffle_array(dir); //not sure
