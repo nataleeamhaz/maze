@@ -7,8 +7,9 @@
  *     printf("Heading EAST!");
  * }
  */
+ #include <stdbool.h>
 typedef enum { NORTH = 0, SOUTH = 1, WEST = 2, EAST = 3 } Direction;
-#include <stdbool.h>
+
 /*
  * Struct to represent a room in the maze.
  * Must store:

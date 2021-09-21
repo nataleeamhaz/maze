@@ -75,9 +75,8 @@ void initialize_maze(int num_rows, int num_cols,
            struct maze_room maze[num_rows][num_cols]) {
         
                for(int i = 0; i < num_rows; i++){
-                   for(int j = 0; i < num_cols; j++){
-                       int connect[4] = {2,2,2,2};
-                       struct maze_room roomM = {false, i, j, connect};
+                   for(int j = 0; j < num_cols; j++){
+                       struct maze_room roomM = {.visited = false, .row = i, .column = j, .connect = {-1,-1,-1,-1}};
                        maze[i][j] = roomM;
                    }
                }
