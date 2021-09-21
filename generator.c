@@ -76,13 +76,15 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
                     for(int i = 0; i < 4; i++){
                         if(get_neighbor(num_rows, num_cols, maze, room, dir[i]) == NULL){
                             room -> connect[dir[i]] = 1;
-                        } 
+                        }
+                        
                         else{
                          struct maze_room *nextRoom = get_neighbor(num_rows, num_cols, maze, room, dir[i]);
                          if(nextRoom -> visited == false){
                             room -> connect[dir[i]] = 0;
                             drunken_walk(nextRoom -> row, nextRoom -> column, num_rows, num_cols, maze);
                          }
+                        
                          else{
                             Direction oppDir = get_opposite_dir(dir[i]);
                             //instead of getN, 78 check connection
@@ -93,13 +95,14 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
                             room -> connect[dir[i]] = 1; 
                             
                         } 
+                         }
                             }
                          }
                         }
 
              
                         
-                    }
+                    
                     
 
 
