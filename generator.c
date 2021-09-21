@@ -78,20 +78,22 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
                             room -> connect[dir[i]] = 1;
                         } 
                         else{
-                         struct maze_room *nextRoom = get_neighbor(row, col, maze, room, dir[i]);
+                         struct maze_room *nextRoom = get_neighbor(num_rows, num_cols, maze, room, dir[i]);
                          if(nextRoom -> visited == false){
                             room -> connect[dir[i]] = 0;
-                            drunken_walk(room -> row, room -> column, num_rows, num_cols, maze);
+                            drunken_walk(nextRoom -> row, nextRoom -> column, num_rows, num_cols, maze);
                          }
                          else{
                             Direction oppDir = get_opposite_dir(dir[i]);
-                            if(get_neighbor(row, col, maze, room, oppDir) == NULL){
-                            room -> connect[oppDir] = 1;
+                            //instead of getN, 78 check connection
+                            if(nextRoom -> connect[dir[i]] != -1){
+                            room -> connect[dir[i]] = nextRoom -> connect[oppDir];
                             }
                             else{
-                            room -> connect[oppDir] = 0; //not sure 
+                            room -> connect[dir[i]] = 1; //not sure 
                             
                         } 
+                            }
                          }
                         }
 
@@ -103,7 +105,7 @@ void drunken_walk(int row, int col, int num_rows, int num_cols,
 
 
     // TODO: implement this function
-}
+
 
 /**
   Represents a maze_room struct as an integer based on its connect
