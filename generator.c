@@ -241,7 +241,7 @@ int main(int argc, char **argv) {
     // TODO: implement this function
     struct maze_room newM[num_rows][num_cols];
     initialize_maze(num_rows,num_cols,newM);
-    drunken_walk(1, 1, num_rows, num_cols, newM);
+    drunken_walk(0, 0, num_rows, num_cols, newM);
     int encodeM[num_rows][num_cols];
     encode_maze(num_rows, num_cols, newM, encodeM);
     write_encoded_maze_to_file(num_rows, num_cols, encodeM, file_name);
