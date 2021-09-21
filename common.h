@@ -8,7 +8,7 @@
  * }
  */
 typedef enum { NORTH = 0, SOUTH = 1, WEST = 2, EAST = 3 } Direction;
-
+#include <stdbool.h>
 /*
  * Struct to represent a room in the maze.
  * Must store:
@@ -20,6 +20,10 @@ typedef enum { NORTH = 0, SOUTH = 1, WEST = 2, EAST = 3 } Direction;
  *    four directions.
  */
 struct maze_room {
+    bool visited;
+    int row;
+    int column;
+    int connect[4]; 
     // Fill in the fields you need
     
     // NOTE: ignore this field until you start implementing the solver
