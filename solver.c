@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 #include "solver.h"
 
 /*
@@ -30,7 +30,30 @@
  *pointed to by the parameter (make sure to use pointers correctly!).
  */
 void create_room_connections(struct maze_room *room, unsigned int hex) {
-    // TODO: implement this function
+    if (hex & 1 = 1){
+        room -> connect[NORTH] = 1;
+    }
+    else{
+       room -> connect[NORTH] = 0;
+    }
+    if(hex & 2 = 1){
+        room -> connect[SOUTH] = 1;
+    }
+    else{
+        room -> connect[SOUTH] = 0;
+    }
+    if(hex & 4 = 1){
+        room -> connect[WEST] = 1;
+    }
+    else{
+        room -> connect[WEST] = 0;
+    }
+    if(hex & 8 = 1){
+        room -> connect[EAST] = 1; 
+    }
+    else{
+        room -> connect[EAST] = 0;
+    }
 }
 
 /*
@@ -60,6 +83,20 @@ void create_room_connections(struct maze_room *room, unsigned int hex) {
 int dfs(int row, int col, int goal_row, int goal_col, int num_rows,
         int num_cols, struct maze_room maze[num_rows][num_cols], FILE *file) {
     Direction directions[4] = { NORTH, SOUTH, EAST, WEST };
+    if (row == goal_row && col == goal_col){
+        return true;
+    }
+    struct maze_room *room = &maze[i][j];
+    room -> visited = true; 
+    for (int i = 0; i < 4; i++){
+        struct maze_room *neighbor = get_neighbor(num_rows, num_cols, maze, room, directions[i]);
+        if (room -> connection[directions[i] == 0; && neighbor -> visited == false]){
+            if (dfs(neighbor -> row, neighbor -> column, goal_row, goal_col, num_rows, num_cols, maze, file) == true){
+                return true;
+            }
+        }
+    }
+    return false; 
     // TODO: implement this function
 }
 
@@ -80,6 +117,13 @@ int dfs(int row, int col, int goal_row, int goal_col, int num_rows,
 void decode_maze(int num_rows, int num_cols,
                  struct maze_room maze[num_rows][num_cols],
                  int encoded_maze[num_rows][num_cols]) {
+                     for (int i = 0; i < num_rows; i++){
+                         for (int j = 0; j < num_cols; j++){
+                             create_room_connections(&maze[i][j], encoded_maze[i][j]);
+                         }
+                     }
+
+
     // TODO: implement this function
 }
 
@@ -96,6 +140,13 @@ void decode_maze(int num_rows, int num_cols,
  */
 int print_pruned_path(struct maze_room *room, FILE *file) {
     // TODO: implement this function
+    fprintf(file, "%d, %d\n", room -> row, room -> column);
+    if(room -> next == NULL){
+        return 0;
+    }
+    else{
+        return print_pruned_path(room -> next, file);
+    }
 }
 
 /*
@@ -179,5 +230,19 @@ int main(int argc, char **argv) {
         goal_row = atoi(argv[7]);
         goal_col = atoi(argv[8]);
     }
+    if(num_rows <= 0 || num_cols <= 0 || goal_row < 0 || goal_col < 0){
+      return 1;
+    }
+    if(is_in_range(start_row, start_col, num_rows, num_cols) == 0){
+      return 1;
+    }
+    if(is_in_range(goal_row, goal_col, num_rows, num_cols) == 0){
+      return 1;
+    }
+    int encoded_maze[num_rows][num_cols];
+    read_encoded_maze_from_file(num_rows, num_cols, encoded_maze, maze_file_name);
+    struct maze_room maze[num_rows][num_cols];
+    initialize_maze(num_rows, num_cols, maze);
+    decode_maze(num_rows, num_cols, maze, encoded_maze);
     // TODO: implement this function
 }

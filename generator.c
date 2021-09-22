@@ -242,6 +242,11 @@ int main(int argc, char **argv) {
         num_rows = atoi(argv[2]);
         num_cols = atoi(argv[3]);
     }
+    if (num_rows <= 0 || num_cols <= 0){
+        fprintf(stderr, "Not greater than 0");
+        return 1;
+    }
+    
     // TODO: implement this function
     struct maze_room newM[num_rows][num_cols];
     initialize_maze(num_rows,num_cols,newM);
@@ -250,5 +255,5 @@ int main(int argc, char **argv) {
     encode_maze(num_rows, num_cols, newM, encodeM);
     write_encoded_maze_to_file(num_rows, num_cols, encodeM, file_name);
 
-    
+    return 0;
 }
