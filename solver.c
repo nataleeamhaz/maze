@@ -29,7 +29,6 @@
  *  - nothing. The connections should be saved in the maze_room struct
  *pointed to by the parameter (make sure to use pointers correctly!).
  */
- /**
 void create_room_connections(struct maze_room *room, unsigned int hex) {
     if (hex & 1 = 1){
         room -> connect[NORTH] = 1;
@@ -245,6 +244,5 @@ int main(int argc, char **argv) {
     struct maze_room maze[num_rows][num_cols];
     initialize_maze(num_rows, num_cols, maze);
     decode_maze(num_rows, num_cols, maze, encoded_maze);
-    **/
     // TODO: implement this function
 }
