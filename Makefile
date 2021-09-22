@@ -28,3 +28,4 @@ $(SOL_FULL): $(SOL_OBJS) $(SOL_HEADERS)
 
 clean:
 	rm -f $(EXECS)
+
