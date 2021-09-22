@@ -254,6 +254,4 @@ int main(int argc, char **argv) {
     int encodeM[num_rows][num_cols];
     encode_maze(num_rows, num_cols, newM, encodeM);
     write_encoded_maze_to_file(num_rows, num_cols, encodeM, file_name);
-
-    return 0;
 }
